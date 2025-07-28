@@ -155,7 +155,11 @@
   margin-top: 2rem;
 }
 
-.card__information .highlight_badge{
+.card__information .sku {
+  margin: 0rem;
+}
+
+.card__information .highlight_badge {
   font-weight: 600;
   font-size: 1.3rem;
   line-height: 1.45;
