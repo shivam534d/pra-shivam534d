@@ -24,6 +24,11 @@
   gap: 1.5rem;
 }
 
+.card__inner {
+  border-radius: 2rem;
+  border: 1px solid #E2E2E2;
+}
+
 .card--horizontal.ratio:before {
   padding-bottom: 0;
 }
@@ -71,6 +76,10 @@
 /* Needed for gradient continuity with or without animation so that transparent PNG images come up as we would expect */
 .card__inner.color-scheme-1 {
   background: transparent;
+}
+
+.card .card__inner .card__media img {
+  border: 1px solid #E2E2E2
 }
 
 .card .card__inner .card__media {
@@ -137,6 +146,24 @@
 .card__information {
   grid-row-start: 2;
   padding: 1.3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.card__information .highlight_badge{
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 1.45;
+  color: #005370;
+  background: #CCEDF980;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.5rem;
+  margin: 0rem;
 }
 
 .card:not(.ratio) > .card__content {
@@ -265,8 +292,8 @@
 
 @media screen and (min-width: 750px) {
   .card__information {
-    padding-bottom: 1.7rem;
-    padding-top: 1.7rem;
+    padding-bottom: 1.5rem;
+    padding-top: 0rem;
   }
 }
 
@@ -303,6 +330,10 @@
 .card__heading {
   margin-top: 0;
   margin-bottom: 0;
+  font-family: 'RB-Bold';
+  font-size: 1.8rem;
+  line-height: 1.2;
+  text-transform: capitalize;
 }
 
 .card__heading:last-child {
@@ -399,11 +430,6 @@
     opacity: 1;
     transition: transform var(--duration-long) ease;
     transform: scale(1.03);
-  }
-
-  .underline-links-hover:hover a {
-    text-decoration: underline;
-    text-underline-offset: 0.3rem;
   }
 }
 
