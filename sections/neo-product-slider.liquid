@@ -1,5 +1,5 @@
 {% comment %}
-  Hero Section with Background Image, Heading, Content, and Buttons
+  Product Card Slider
 {% endcomment %}
 
 <style>
@@ -16,6 +16,16 @@
   }
   .slider-container {
     position: relative;
+  }
+  .swiper-nav-button {
+    line-height: 0;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translatey(-50%);
+  }
+  .swiper-next {
+    right: -5%;
   }
 </style>
 
@@ -52,11 +62,8 @@
           {% endfor %}
         </div>
       </div>
-      <div class="swiper-button-next">
-        {{ 'icon-arrow-left.svg' | inline_asset_content }}
-      </div>
-      <div class="swiper-button-prev">
-        {{ 'icon-arrow-left.svg' | inline_asset_content }}
+      <div class="swiper-next swiper-nav-button">
+        {{ 'arrow-right.svg' | inline_asset_content }}
       </div>
     </div>
 
@@ -79,8 +86,7 @@
         },
       },
       navigation: {
-        nextEl: '#productSlider-{{- section.id }} .swiper-button-next',
-        prevEl: '#productSlider-{{- section.id }} .swiper-button-prev',
+        nextEl: '#productSlider-{{- section.id }} .swiper-next'
       },
     });
   }, { once: true })
