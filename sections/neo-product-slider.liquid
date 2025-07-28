@@ -1,0 +1,224 @@
+{% comment %}
+  Hero Section with Background Image, Heading, Content, and Buttons
+{% endcomment %}
+
+<style>
+  .neo-product-slider {
+  }
+  .neo-hero--heading {
+    font-family: 'RB-Bold';
+    color: rgba(var(--color-foreground));
+  }
+  .neo-hero--heading {
+    font-size: 3.7rem;
+    line-height: 1.2;
+    text-transform: capitalize;
+  }
+  .slider-container {
+    position: relative;
+  }
+</style>
+
+<div class="neo-product-slider" id="productSlider-{{- section.id -}}">
+  <div class="neo-product-slider-container page-width">
+    <h2 class="neo-hero--heading" {{ block.shopify_attributes }}>
+      {{ section.settings.heading }}
+    </h2>
+
+    <div class="slider-container">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          {% assign skip_card_product_styles = false %}
+          {% for product in section.settings.product_list %}
+            {% assign lazy_load = false %}
+            {%- if forloop.index > 2 -%}
+              {%- assign lazy_load = true -%}
+            {%- endif -%}
+            <div class="swiper-slide">
+              {% render 'card-product',
+                card_product: product,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_vendor: section.settings.show_vendor,
+                show_rating: section.settings.show_rating,
+                lazy_load: lazy_load,
+                skip_styles: skip_card_product_styles,
+                quick_add: section.settings.quick_add,
+                section_id: section.id
+              %}
+            </div>
+            {% assign skip_card_product_styles = true %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="swiper-button-next">
+        {{ 'icon-arrow-left.svg' | inline_asset_content }}
+      </div>
+      <div class="swiper-button-prev">
+        {{ 'icon-arrow-left.svg' | inline_asset_content }}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    let productSlider = new Swiper('#productSlider-{{- section.id }} .swiper', {
+      slidesPerView: 1.4,
+      spaceBetween: 15,
+      breakpoints: {
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 30,
+        },
+      },
+      navigation: {
+        nextEl: '#productSlider-{{- section.id }} .swiper-button-next',
+        prevEl: '#productSlider-{{- section.id }} .swiper-button-prev',
+      },
+    });
+  }, { once: true })
+</script>
+
+{% schema %}
+{
+  "name": "Neo Products Slider",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Neo Products Slider"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Test Section"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products",
+      "limit": 50
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+    },
+    {
+      "type": "select",
+      "id": "image_shape",
+      "options": [
+        {
+          "value": "default",
+          "label": "t:sections.all.image_shape.options__1.label"
+        },
+        {
+          "value": "arch",
+          "label": "t:sections.all.image_shape.options__2.label"
+        },
+        {
+          "value": "blob",
+          "label": "t:sections.all.image_shape.options__3.label"
+        },
+        {
+          "value": "chevronleft",
+          "label": "t:sections.all.image_shape.options__4.label"
+        },
+        {
+          "value": "chevronright",
+          "label": "t:sections.all.image_shape.options__5.label"
+        },
+        {
+          "value": "diamond",
+          "label": "t:sections.all.image_shape.options__6.label"
+        },
+        {
+          "value": "parallelogram",
+          "label": "t:sections.all.image_shape.options__7.label"
+        },
+        {
+          "value": "round",
+          "label": "t:sections.all.image_shape.options__8.label"
+        }
+      ],
+      "default": "default",
+      "label": "t:sections.all.image_shape.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
+      "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+    },
+    {
+      "type": "select",
+      "id": "quick_add",
+      "default": "none",
+      "label": "t:sections.main-collection-product-grid.settings.quick_add.label",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_1"
+        },
+        {
+          "value": "standard",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_2"
+        },
+        {
+          "value": "bulk",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
+        }
+      ]
+    },
+  ],
+  "presets": [
+    {
+      "name": "Neo Products Slider"
+    }
+  ]
+}
+{% endschema %}

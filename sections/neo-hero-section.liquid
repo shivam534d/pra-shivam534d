@@ -14,7 +14,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    max-width: 40%;
+    max-width: 35%;
     background: {{ section.settings.content_bg_color }};
     border-radius: 2rem;
     padding: 8rem;
@@ -62,10 +62,20 @@
     color: rgba(var(--color-background));
     background: var(--content-color);
   }
+  .btn.btn--primary:hover {
+    background-color: var(--content-color);
+    opacity: 0.85;
+    transition: opacity 0.15s ease;
+  }
   .btn.btn--secondary {
     background: rgba(var(--color-background));
     color: var(--content-color);
     border: 1.5px solid var(--content-color);
+  }
+  .btn.btn--secondary:hover {
+    color: rgba(var(--color-background));
+    background-color: var(--content-color);
+    transition: all 0.55s ease;
   }
 </style>
 
