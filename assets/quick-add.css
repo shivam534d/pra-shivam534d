@@ -358,7 +358,14 @@ quick-add-modal .product-form__buttons {
 .quick-add__submit {
   padding: 0.8rem;
   min-width: 100%;
+  font-weight: 600;
+  font-size: 1.7;
+  line-height: 1.25;
+  text-align: center;
   box-sizing: border-box;
+  text-transform: capitalize;
+  background-color: #00a5df;
+  border-radius: 50px;
 }
 
 quick-add-modal .product-media-container.constrain-height {
