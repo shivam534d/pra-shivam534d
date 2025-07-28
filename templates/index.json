@@ -9,36 +9,64 @@
  */
 {
   "sections": {
-    "featured_collection": {
-      "type": "featured-collection",
+    "neo_hero_section_DyknqG": {
+      "type": "neo-hero-section",
+      "blocks": {
+        "heading_FkFW96": {
+          "type": "heading",
+          "settings": {
+            "heading": "Advantage By Design"
+          }
+        },
+        "sub_heading_eJN4VK": {
+          "type": "sub-heading",
+          "settings": {
+            "sub_heading": "ELEMNT BOLT V2 GPS Cycling Computer"
+          }
+        },
+        "content_wQAFBt": {
+          "type": "content",
+          "settings": {
+            "content": "<p>Every detail of the sleek, smart, and powerful ELEMNT BOLT GPS bike computer is designed to keep you ahead. Its aerodynamic design, intuitive mapping, and targeted training features help optimize performance.</p>"
+          }
+        },
+        "buttons_eLPTFD": {
+          "type": "buttons",
+          "settings": {
+            "button_label": "Shop Now",
+            "button_link": "shopify://collections",
+            "button_style": "btn--primary"
+          }
+        },
+        "buttons_6NQF9N": {
+          "type": "buttons",
+          "settings": {
+            "button_label": "View All Bike Computers",
+            "button_link": "shopify://collections",
+            "button_style": "btn--secondary"
+          }
+        }
+      },
+      "block_order": [
+        "heading_FkFW96",
+        "sub_heading_eJN4VK",
+        "content_wQAFBt",
+        "buttons_eLPTFD",
+        "buttons_6NQF9N"
+      ],
+      "name": "Neo Hero Section",
       "settings": {
-        "collection": "all",
-        "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
+        "desktop_image": "shopify://shop_images/bolt2_hero_1.jpg",
+        "mobile_image": "shopify://shop_images/bolt2_hero_1_7dad7aff-e6a1-484b-bb99-60edd4bb6e4a.jpg",
+        "content_bg_color": "#FFFFFF",
+        "content_text_color": "#000000",
+        "content_vertical_alignment": "center",
+        "content_horizontal_alignment": "center",
+        "content_text_alignment": "center"
       }
     }
   },
   "order": [
-    "featured_collection"
+    "neo_hero_section_DyknqG"
   ]
 }

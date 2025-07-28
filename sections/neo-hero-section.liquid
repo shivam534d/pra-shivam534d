@@ -1,0 +1,294 @@
+{% comment %}
+  Hero Section with Background Image, Heading, Content, and Buttons
+{% endcomment %}
+
+<style>
+  .neo-hero-section {
+    position: relative;
+    width: 100%;
+    --content-color: {{ section.settings.content_text_color }};
+  }
+  .neo-hero-container {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 40%;
+    background: {{ section.settings.content_bg_color }};
+    border-radius: 2rem;
+    padding: 8rem;
+    top: 50%;
+    margin-left: 7.5rem;
+    transform: translateY(-50%);
+  }
+  .neo-hero-sub--heading,
+  .neo-hero--heading {
+    font-family: 'RB-Bold';
+    color: var(--content-color);
+  }
+  .neo-hero--heading {
+    font-size: 3.7rem;
+    line-height: 1.2;
+    text-transform: capitalize;
+  }
+  .neo-hero-sub--heading {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    color: #0089BA;
+  }
+  .neo-hero--text {
+    color: var(--content-color);
+  }
+  .neo-hero--buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+  }
+  .btn {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.7rem;
+    line-height: 1.25;
+    text-align: center;
+    text-transform: capitalize;
+    padding: 1.4rem 3.5rem;
+    border-radius: 100rem;
+  }
+  .btn.btn--primary {
+    color: rgba(var(--color-background));
+    background: var(--content-color);
+  }
+  .btn.btn--secondary {
+    background: rgba(var(--color-background));
+    color: var(--content-color);
+    border: 1.5px solid var(--content-color);
+  }
+</style>
+
+<div class="neo-hero-section">
+  {% if section.settings.desktop_image != blank or section.settings.mobile_image != blank %}
+    <picture>
+      {% if section.settings.mobile_image != blank %}
+        <source
+          media="(max-width: 767px)"
+          srcset="{{ section.settings.mobile_image | image_url: width: 475 }}"
+          width="{{ section.settings.mobile_image.width }}"
+          height="{{ section.settings.mobile_image.height }}"
+        >
+      {% endif %}
+      {% if section.settings.desktop_image != blank %}
+        <source
+          media="(min-width: 768px)"
+          srcset="{{ section.settings.section.settings.desktop_image | image_url: width: 1600 }}"
+          width="{{ section.settings.section.settings.desktop_image.width }}"
+          height="{{ section.settings.section.settings.desktop_image.height }}"
+        >
+      {% endif %}
+      {{ section.settings.desktop_image
+        | image_url: width: 1600
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          class: '',
+          style:'width: 100%; height: auto;display:block;',
+          alt: desktop_alt
+      }}
+    </picture>
+  {% else %}
+    {{ 'lifestyle-1' | placeholder_svg_tag: 'neo-hero-background-image desktop-image' }}
+  {% endif %}
+
+  <div class="neo-hero-container">
+    <div class="neo-hero-content">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'heading' %}
+            <h2 class="neo-hero--heading" {{ block.shopify_attributes }}>
+              {{ block.settings.heading }}
+            </h2>
+          {% when 'sub-heading' %}
+            <h2 class="neo-hero-sub--heading" {{ block.shopify_attributes }}>
+              {{ block.settings.sub_heading }}
+            </h2>
+          {% when 'content' %}
+            <div class="neo-hero--text" {{ block.shopify_attributes }}>
+              {{ block.settings.content }}
+            </div>
+        {% endcase %}
+      {% endfor %}
+
+      <div class="neo-hero--buttons">
+        {% assign button_blocks = section.blocks | where: 'type', 'buttons' %}
+        {% for block in button_blocks %}
+          {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+            <a href="{{ block.settings.button_link }}" class="btn {{ block.settings.button_style }}" {{ block.shopify_attributes }}>
+              {{ block.settings.button_label }}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Neo Hero Section",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 6,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image",
+      "info": "If no mobile image is selected, the desktop image will be used."
+    },
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Content Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "content_text_color",
+      "label": "Content Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "content_vertical_alignment",
+      "label": "Vertical Alignment",
+      "options": [
+        { "value": "flex-start", "label": "Top" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Bottom" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "content_horizontal_alignment",
+      "label": "Horizontal Alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "content_text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Test Section"
+        }
+      ]
+    },
+    {
+      "type": "sub-heading",
+      "name": "Sub Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "sub_heading",
+          "label": "Sub Heading",
+          "default": "Test Section"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "Content",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Add some content here to describe your section.</p>"
+        }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "Button",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Button"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Button style",
+          "options": [
+            { "value": "btn--primary", "label": "Primary" },
+            { "value": "btn--secondary", "label": "Secondary" }
+          ],
+          "default": "btn--primary"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Neo Hero Section",
+      "blocks": [
+        { "type": "heading" },
+        { "type": "sub-heading" },
+        { "type": "content" },
+        { "type": "buttons" }
+      ]
+    }
+  ]
+}
+{% endschema %}
