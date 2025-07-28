@@ -247,6 +247,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   font-weight: var(--font-body-weight);
 }
 
+picture,
 img {
   width: 100%;
   height: auto;
