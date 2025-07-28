@@ -58,15 +58,39 @@
       "settings": {
         "desktop_image": "shopify://shop_images/bolt2_hero_1.jpg",
         "mobile_image": "shopify://shop_images/bolt2_hero_1_7dad7aff-e6a1-484b-bb99-60edd4bb6e4a.jpg",
-        "content_bg_color": "#FFFFFF",
+        "content_bg_color": "#ffffff",
         "content_text_color": "#000000",
         "content_vertical_alignment": "center",
         "content_horizontal_alignment": "center",
         "content_text_alignment": "center"
       }
+    },
+    "neo_product_slider_GDTLTN": {
+      "type": "neo-product-slider",
+      "name": "Neo Products Slider",
+      "settings": {
+        "heading": "recommended for you",
+        "product_list": [
+          "kickr-climb-indoor-grade-simulator",
+          "kickr-climb-indoor-grade-simulator-ultra",
+          "kickr-headwind-smart-fan",
+          "kickr-headwind-smart-fan-plus",
+          "rpm-cadence-sensor",
+          "rpm-cadence-sensor-apro",
+          "speedplay-aero-pedal-system-gen1-53",
+          "speedplay-aero-pedal-system-gen1-56"
+        ],
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard"
+      }
     }
   },
   "order": [
-    "neo_hero_section_DyknqG"
+    "neo_hero_section_DyknqG",
+    "neo_product_slider_GDTLTN"
   ]
 }
