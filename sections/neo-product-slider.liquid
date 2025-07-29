@@ -4,6 +4,8 @@
 
 <style>
   .neo-product-slider {
+    margin-top: {{ section.settings.margin_top | divided_by: 10.0 }}rem;
+    margin-bottom: {{ section.settings.margin_bottom | divided_by: 10.0 }}rem;
   }
   .neo-hero--heading {
     font-family: 'RB-Bold';
@@ -104,6 +106,26 @@
     {
       "type": "header",
       "content": "Neo Products Slider"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section Space Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section Space Bottom",
+      "default": 80
     },
     {
       "type": "text",
