@@ -69,6 +69,8 @@
       "type": "neo-product-slider",
       "name": "Neo Products Slider",
       "settings": {
+        "margin_top": 80,
+        "margin_bottom": 80,
         "heading": "recommended for you",
         "product_list": [
           "kickr-climb-indoor-grade-simulator",
@@ -87,10 +89,42 @@
         "show_rating": false,
         "quick_add": "standard"
       }
+    },
+    "neo_support_mVDkKg": {
+      "type": "neo-support",
+      "blocks": {
+        "card_tgj6hr": {
+          "type": "card",
+          "settings": {
+            "heading": "Dealer Support",
+            "content": "<p>Wahoo values our dealers and store associates. We are here to support you in any way we can. Have questions or need help? Find product information, troubleshooting, and warranty support at our support site.</p>",
+            "image": "shopify://shop_images/e11b7e13e6b38b589c12154d3a9919e9b956034c_2.jpg",
+            "button_label": "Go To Support Site",
+            "button_link": "shopify://products/kickr-climb-indoor-grade-simulator-ultra"
+          }
+        },
+        "card_ii9QpA": {
+          "type": "card",
+          "settings": {
+            "heading": "Product Training",
+            "content": "<p>The Wahoo dealer training portal offers the latest news from Wahoo, in-depth product training, and exclusive offers for Wahoo dealers and store associates.</p>",
+            "image": "shopify://shop_images/dd25f31d124eb84cae335042c6c7a3d137aedc40_2.jpg",
+            "button_label": "Go to Training Portal",
+            "button_link": "shopify://collections"
+          }
+        }
+      },
+      "block_order": [
+        "card_tgj6hr",
+        "card_ii9QpA"
+      ],
+      "name": "Neo Support",
+      "settings": {}
     }
   },
   "order": [
     "neo_hero_section_DyknqG",
-    "neo_product_slider_GDTLTN"
+    "neo_product_slider_GDTLTN",
+    "neo_support_mVDkKg"
   ]
 }
