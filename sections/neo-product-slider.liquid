@@ -11,8 +11,9 @@
     font-family: 'RB-Bold';
     color: rgba(var(--color-foreground));
   }
-  .neo-hero--heading {
-    font-size: 3.7rem;
+  .neo-product-slider .neo-hero--heading {
+    font-size: 3.2rem;
+    margin: 0 0 3rem 0;
     line-height: 1.2;
     text-transform: capitalize;
   }
@@ -25,9 +26,18 @@
     position: absolute;
     top: 50%;
     transform: translatey(-50%);
+    background: #fff;
+    z-index: 2;
+    border-radius: 50%;
   }
   .swiper-next {
     right: -5%;
+  }
+
+  @media screen and (max-width: 990px) {
+    .swiper-next {
+      right: 5%;
+    }
   }
 </style>
 

@@ -14,7 +14,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    max-width: 35%;
+    max-width: 63rem;
     background: {{ section.settings.content_bg_color }};
     border-radius: 2rem;
     padding: 8rem;
@@ -30,6 +30,7 @@
   .neo-hero--heading {
     font-size: 3.7rem;
     line-height: 1.2;
+    margin: 0 0 2rem 0;
     text-transform: capitalize;
   }
   .neo-hero-sub--heading {
@@ -77,6 +78,17 @@
     background-color: var(--content-color);
     transition: all 0.55s ease;
   }
+  @media screen and (max-width: 990px) {
+    .neo-hero-container {
+      padding: 4rem;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .neo-hero-container {
+      margin-left: 1.5rem;
+      width: calc(100% - 3rem);
+    }
+  }
 </style>
 
 <div class="neo-hero-section">
@@ -84,7 +96,7 @@
     <picture>
       {% if section.settings.mobile_image != blank %}
         <source
-          media="(max-width: 767px)"
+          media="(max-width: 990px)"
           srcset="{{ section.settings.mobile_image | image_url: width: 475 }}"
           width="{{ section.settings.mobile_image.width }}"
           height="{{ section.settings.mobile_image.height }}"
@@ -92,7 +104,7 @@
       {% endif %}
       {% if section.settings.desktop_image != blank %}
         <source
-          media="(min-width: 768px)"
+          media="(min-width: 991px)"
           srcset="{{ section.settings.section.settings.desktop_image | image_url: width: 1600 }}"
           width="{{ section.settings.section.settings.desktop_image.width }}"
           height="{{ section.settings.section.settings.desktop_image.height }}"
