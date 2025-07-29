@@ -1,0 +1,211 @@
+{% comment %}
+  Support Section
+{% endcomment %}
+
+{% if section.blocks.size > 0 %}
+  <style>
+    .neo-support {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 3rem;
+    }
+
+    .neo-card {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      padding: 4.5rem 4.5rem 5.1rem 4.5rem;
+      border-radius: 2rem;
+      display: flex;
+      width: 50%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      color: rgba(var(--color-background));
+      min-height: 450px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .neo-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: -1;
+    }
+
+    .neo-card__content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .neo-card--heading {
+      font-family: 'RB-Bold';
+      color: rgba(var(--color-background));
+      font-size: 3.7rem;
+      line-height: 1.2;
+      text-transform: capitalize;
+      margin: 0 0 1rem;
+    }
+
+    .neo-card--text {
+      color: rgba(var(--color-background));
+      margin-bottom: 3rem;
+    }
+
+    .neo-card--text p {
+      color: rgba(var(--color-background));
+      margin: 0;
+    }
+
+    .btn {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.7rem;
+      line-height: 1.25;
+      text-align: center;
+      text-transform: capitalize;
+      padding: 1.4rem 3.5rem;
+      border-radius: 100rem;
+      display: inline-block;
+      border: none;
+    }
+
+    .neo-support .btn.btn--primary {
+      color: rgba(var(--color-foreground));
+      background: #00a5df;
+    }
+
+    .btn.btn--primary:hover {
+      opacity: 0.85;
+      transition: opacity 0.15s ease;
+    }
+
+    {% for block in section.blocks %}
+      {% if block.settings.image != blank %}
+        #neo-card-{{ block.id }} {
+          background-image: url('{{ block.settings.image | image_url: width: 1000 }}');
+        }
+      {% else %}
+        #neo-card-{{ block.id }} {
+          background-color: #f0f0f0; /* Placeholder background */
+          color: rgba(var(--color-foreground));
+        }
+        #neo-card-{{ block.id }}::before {
+          display: none;
+        }
+        #neo-card-{{ block.id }} .neo-card--heading,
+        #neo-card-{{ block.id }} .neo-card--text p {
+            color: rgba(var(--color-foreground));
+        }
+        #neo-card-{{ block.id }} .btn.btn--primary {
+            background: rgba(var(--color-foreground));
+            color: rgba(var(--color-background));
+        }
+      {% endif %}
+    {% endfor %}
+
+    @media screen and (max-width: 768px) {
+      .neo-card {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <div class="neo-support page-width">
+    {% for block in section.blocks %}
+      <div class="neo-card" id="neo-card-{{ block.id }}" {{ block.shopify_attributes }}>
+        <div class="neo-card__content">
+          {% if block.settings.heading != blank %}
+            <h2 class="neo-card--heading">{{ block.settings.heading | escape }}</h2>
+          {% endif %}
+          {% if block.settings.content != blank %}
+            <div class="neo-card--text rte">
+              {{ block.settings.content }}
+            </div>
+          {% endif %}
+          {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+            <a href="{{ block.settings.button_link }}" class="btn btn--primary">
+              {{ block.settings.button_label | escape }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Neo Support",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Neo Support Section"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Support"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Find answers to your questions and get the help you need.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Get Support"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Neo Support",
+      "blocks": [
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
